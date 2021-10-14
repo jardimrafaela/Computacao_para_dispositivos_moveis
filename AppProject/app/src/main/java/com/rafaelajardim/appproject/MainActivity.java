@@ -1,48 +1,67 @@
 package com.rafaelajardim.appproject;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import com.google.android.material.snackbar.Snackbar;
-
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.rafaelajardim.appproject.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
+    private ListView lvProdutos;
+    private ArrayAdapter adapter;
+    private List<Produto> listaDeProdutos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        lvProdutos = findViewById(R.id.lvProdutos);
+        carregarProdutos();
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        FloatingActionButton fab = findViewById(R.id.fab);
 
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, FormularioActivity.class);
+                startActivity(intent);
+
             }
         });
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        carregarProdutos();
+    }
+
+    private void carregarProdutos(){
+        listaDeProdutos = ProdutoDAO.getProdutos(this);
+        if (listaDeProdutos.size() ==0){
+            Produto fake = new Produto("Lista Vazia", "");
+            listaDeProdutos.add(fake);
+            lvProdutos.setEnabled(false);
+        }else{
+            lvProdutos.setEnabled(true);
+        }
+
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaDeProdutos);
+        lvProdutos.setAdapter(adapter);
+
     }
 
     @Override
@@ -65,12 +84,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }
