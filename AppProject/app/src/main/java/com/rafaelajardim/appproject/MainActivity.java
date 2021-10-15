@@ -46,6 +46,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+<<<<<<< HEAD
+=======
+    protected void onRestart() {
+        super.onRestart();
+        carregarProdutos();
+    }
+
+    private void carregarProdutos(){
+        listaDeProdutos = ProdutoDAO.getProdutos(this);
+        if (listaDeProdutos.size() ==0){
+            Produto fake = new Produto("Lista Vazia", "", "", "");
+            listaDeProdutos.add(fake);
+            lvProdutos.setEnabled(false);
+        }else{
+            lvProdutos.setEnabled(true);
+        }
+
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listaDeProdutos);
+        lvProdutos.setAdapter(adapter);
+
+    }
+
+    @Override
+>>>>>>> 30477554f318bd459ac466053ffb02262922034c
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
