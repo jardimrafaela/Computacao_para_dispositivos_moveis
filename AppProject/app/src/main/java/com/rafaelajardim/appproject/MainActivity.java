@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private void carregarProdutos(){
         listaDeProdutos = ProdutoDAO.getProdutos(this);
         if (listaDeProdutos.size() ==0){
-            Produto fake = new Produto("Lista Vazia", "");
+            Produto fake = new Produto("Lista Vazia", "", "", "");
             listaDeProdutos.add(fake);
             lvProdutos.setEnabled(false);
         }else{

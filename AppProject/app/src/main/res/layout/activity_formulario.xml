@@ -4,10 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BCAAA9"
+    android:orientation="vertical"
     tools:context=".FormularioActivity">
 
     <EditText
         android:id="@+id/etNome"
+        style="@style/controles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -20,14 +23,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Spinner
         android:id="@+id/spCategoria"
+        style="@style/Labels"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:entries="@array/categorias"
+        android:layout_marginTop="48dp"
+        android:entries="@array/categories"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNome" />
 
@@ -35,10 +41,24 @@
         android:id="@+id/btnSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:backgroundTint="#FA8072"
         android:text="Salvar"
+        android:textColor="#2F4F4F"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spTipo" />
+
+    <Spinner
+        android:id="@+id/spTipo"
+        style="@style/Labels"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/types"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spCategoria" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,18 +10,16 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <string-array name="categories">
-        <item>Select the category...</item>
-
-        <item>Food</item>
-        <item>Drink</item>
+    <string-array name="categorias">
+        <item>Selecione a categoria...</item>
+        <item>Alimentos</item>
+        <item>Bebidas</item>
     </string-array>
 
-    <string-array name="types">
-        <item>Select the type of environment...</item>
-
-        <item>retail</item>
-        <item>wholesale</item>
+    <string-array name="tipos">
+        <item>Selecione o tipo de estabelecimento...</item>
+        <item>Varejo</item>
+        <item>Atacado</item>
     </string-array>
 
 </resources>

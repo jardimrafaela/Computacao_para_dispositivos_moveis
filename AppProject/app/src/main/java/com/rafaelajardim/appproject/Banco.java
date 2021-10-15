@@ -18,7 +18,8 @@ public class Banco extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE IF NOT EXISTS produtos (  " +
                     "  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,  " +
                     "  nome TEXT NOT NULL , " +
-                    "  categoria TEXT ) ");
+                    "  categoria TEXT," +
+                    "  tipo TEXT) ");
     }
 
     @Override

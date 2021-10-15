@@ -15,6 +15,7 @@ public class ProdutoDAO {
         ContentValues values = new ContentValues();
         values.put("nome", produto.getNome());
         values.put("categoria", produto.getCategoria());
+        values.put("tipo", produto.getTipo());
 
         Banco conn = new Banco(context);
         SQLiteDatabase db = conn.getWritableDatabase();
@@ -27,6 +28,7 @@ public class ProdutoDAO {
         ContentValues values = new ContentValues();
         values.put("nome", produto.getNome());
         values.put("categoria", produto.getCategoria());
+       // values.put("tipo"), produto.getTipo();
 
         Banco conn = new Banco(context);
         SQLiteDatabase db = conn.getWritableDatabase();
@@ -57,6 +59,7 @@ public class ProdutoDAO {
                 prod.setId(  cursor.getInt( 0 ) );
                 prod.setNome( cursor.getString( 1 ));
                 prod.setCategoria( cursor.getString( 2 ));
+                prod.setTipo(cursor.getString(3));
                 lista.add( prod );
 
             }while ( cursor.moveToNext() );
@@ -78,6 +81,7 @@ public class ProdutoDAO {
                 prod.setId(cursor.getInt(0));
                 prod.setNome(cursor.getString(1));
                 prod.setCategoria(cursor.getString(2));
+                prod.setTipo(cursor.getString(3));
 
                 return prod;
         }else {

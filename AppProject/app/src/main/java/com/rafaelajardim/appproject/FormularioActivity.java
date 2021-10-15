@@ -2,6 +2,7 @@ package com.rafaelajardim.appproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +14,10 @@ public class FormularioActivity extends AppCompatActivity {
 
     private EditText etNome;
     private Spinner spCategorias;
+    private Spinner spTipo;
     private Button btnSalvar;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +25,7 @@ public class FormularioActivity extends AppCompatActivity {
 
         etNome = findViewById(R.id.etNome);
         spCategorias = findViewById(R.id.spCategoria);
+        spTipo = findViewById(R.id.spTipo);
         btnSalvar = findViewById(R.id.btnSalvar);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +47,7 @@ public class FormularioActivity extends AppCompatActivity {
             Produto produto = new Produto();
             produto.setNome(nome);
             produto.setCategoria(spCategorias.getSelectedItem().toString());
+            produto.setTipo(produto.tipo);
 
             ProdutoDAO.inserir(this, produto);
 
